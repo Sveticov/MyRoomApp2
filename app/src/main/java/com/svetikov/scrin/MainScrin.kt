@@ -101,6 +101,8 @@ fun MainScreen(model: PersonView) {
                 onClick = {
                 model.addPerson(name, age)
                     personLocal = model.person
+                    name =""
+                    age=""
                           },
                 modifier = Modifier.padding(top = 5.dp),
                 enabled = name.isNotEmpty() && age.isNotEmpty()
