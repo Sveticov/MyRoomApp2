@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.svetikov.model.Person
 
 import com.svetikov.modelview.PersonView
 import com.svetikov.ui.theme.ColorBackground
@@ -28,6 +29,10 @@ fun MainScreen(model: PersonView) {
     }
     var age by remember {
         mutableStateOf("")
+    }
+
+    var personLocal by remember {
+        mutableStateOf(Person())
     }
     Scaffold(
         backgroundColor = ColorBackground,
@@ -95,6 +100,7 @@ fun MainScreen(model: PersonView) {
             OutlinedButton(
                 onClick = {
                 model.addPerson(name, age)
+                    personLocal = model.person
                           },
                 modifier = Modifier.padding(top = 5.dp),
                 enabled = name.isNotEmpty() && age.isNotEmpty()
@@ -103,7 +109,7 @@ fun MainScreen(model: PersonView) {
                 Text(text = "Send Model")
             }
 
-            Text(text = model.showPerson().toString())
+            Text(text = personLocal.toString())
 
         }
 
